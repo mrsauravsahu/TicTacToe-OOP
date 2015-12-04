@@ -81,35 +81,17 @@ namespace TicTacToe
             if(this.playerType == GameEnums.PlayerType.HUMAN)
             {
                 Console.Write("Enter position to draw {0}: ", this.piece.ToString());
-                while (true)
-                {
-                    int position;
-                    if (int.TryParse(Console.ReadLine(), out position))
-                    {
-                        return position;
-                    }
-                    Console.Write("Please enter a valid input. Try again: ");
-                }
+				return (new Human().Input());
             }
             else if(this.playerType == GameEnums.PlayerType.AI)
             {
-                Random random = new Random();
-                //TODO
-                return random.Next(0, 9);
+				return (new AI().Input());
             }
-            //Never going to happen
-            return -1;
-        }
-
-        //EXTRAS
-        int Input.Input()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Input(ref Board board, int position, Player player)
-        {
-            throw new NotImplementedException();
+            else
+			{
+				//Never going to happen
+				return -1;
+			}
         }
     }
 }
