@@ -24,9 +24,9 @@ namespace TicTacToe
             Console.Write("Is this player HUMAN or AI: ");
             do
             {
-                var input = Console.ReadLine().Trim();
+                var playerType = Console.ReadLine().Trim();
                 GameEnums.PlayerType humanOrNot;
-                if (Enum.TryParse<GameEnums.PlayerType>(input.ToUpper(), out humanOrNot))
+                if (Enum.TryParse<GameEnums.PlayerType>(playerType.ToUpper(), out humanOrNot))
                 {
                     this.playerType = humanOrNot;
                     break;

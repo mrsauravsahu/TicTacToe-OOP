@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TicTacToe
 {
-    class Game: Toss, Input
+    class Game: Toss
     {
         List<Player> players;
         Board board; 
@@ -42,7 +42,7 @@ namespace TicTacToe
                     Console.WriteLine("Enter a valid position.");
                     position = player.Input();
                 }
-                Input(ref board, position, player);
+                WriteData(position, player);
                 Console.WriteLine("{0} placed {1} at the position {2}.", player.Name, player.Piece.ToString(), position);
                 Console.WriteLine(board.ToString());
                 if (board.Count >= (2 * board.Size - 2))
@@ -75,16 +75,15 @@ namespace TicTacToe
             return true;
         }
 
-        public void Input(ref Board board, int pos, Player player)
+        public void WriteData(int pos, Player player)
         {
-            int size = board.Size;
-            board.Cell[(pos - 1) / size][(pos - 1) % size].IsOccupied = true;
-            board.Cell[(pos - 1) / size][(pos - 1) % size].Character = player.Piece;
+            int size = this.board.Size;
+            this.board.Cell[(pos - 1) / size][(pos - 1) % size].IsOccupied = true;
+            this.board.Cell[(pos - 1) / size][(pos - 1) % size].Character = player.Piece;
         }
 
         public void Toss()
         {
-            
             var randomArray = new List<int>();
             for (int i = 0; i < players.Count; i++)
             {
@@ -101,7 +100,7 @@ namespace TicTacToe
 
         public Player IsGameOver()
         {
-            int i, j, size = board.Size;
+            int i, size = board.Size;
             var grid = board.Cell;
 
 
@@ -142,17 +141,11 @@ namespace TicTacToe
 
         }
 
-        public bool AreAllSame(List<Cell> cells)
-        {
-            if (cells.All(p => p.IsOccupied == true && p.Character == cells[0].Character))
-                return true;
-            return false;
-        }
-
-        //Extras
-        public int Input()
-        {
-            throw new NotImplementedException();
-        }
+		public bool AreAllSame(List<Cell> cells)
+		{
+			if (cells.All(p => p.IsOccupied == true && p.Character == cells[0].Character))
+				return true;
+			return false;
+		}
     }
 }
