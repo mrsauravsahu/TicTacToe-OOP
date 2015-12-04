@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-namespace TicTacToe
+﻿namespace TicTacToe
 {
-    interface Toss
+	interface Toss
     {
         void Toss();
     }

@@ -20,28 +20,27 @@ namespace TicTacToe
             }
         }
 
-        private int size;
-        public int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
-
+		
+		private int size;
         private int count;
-        public int Count
-        {
-            get { return count; }
-            set { count = value; }
-        }
-
         private List<List<Cell>> cell;
-        public List<List<Cell>> Cell
-        {
-            get { return cell; }
-            set { cell = value; }
-        }
 
-        public override string ToString()
+		//Properties
+		public int Size
+		{
+			get { return size; }
+		}
+		public int Count
+		{
+			get { return count; }
+			set { count = value; }
+		}
+		public List<List<Cell>> Cell
+		{
+			get { return cell; }
+		}
+
+		public override string ToString()
         {
             StringBuilder s = new StringBuilder();
             for (int i = 0; i < size; i++)

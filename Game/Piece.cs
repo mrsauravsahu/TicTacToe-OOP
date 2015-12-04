@@ -8,13 +8,14 @@
         }
 
         private string symbol;
-        public string Symbol
-        {
-            get { return symbol; }
-            set { symbol = value; }
-        }
 
-        public override string ToString()
+		//Properties
+		public string Symbol
+		{
+			get { return symbol; }
+		}
+
+		public override string ToString()
         {
             return string.Format(" {0} ", symbol);
         }

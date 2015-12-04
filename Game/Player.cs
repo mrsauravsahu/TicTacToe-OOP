@@ -39,32 +39,24 @@ namespace TicTacToe
         }
 
         private Piece piece;
-        public Piece Piece
-        {
-            get { return piece; }
-            set { piece = value; }
-        }
-
         private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
         private GameEnums.PlayerType playerType;
-        public GameEnums.PlayerType PlayerType
-        {
-            get { return playerType; }
-            set { playerType = value; }
-        }
-
         private int order;
-        public int Order
-        {
-            get { return order; }
-            set { order = value; }
-        }
+
+		//Properties
+		public string Name
+		{
+			get { return name; }
+		}
+		public Piece Piece
+		{
+			get { return piece; }
+		}
+		public int Order
+		{
+			get { return order; }
+			set { order = value; }
+		}
 
         public override string ToString()
         {
