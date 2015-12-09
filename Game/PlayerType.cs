@@ -1,4 +1,4 @@
-﻿namespace GameEnums
+﻿namespace TicTacToe
 {
 	enum PlayerType
     {

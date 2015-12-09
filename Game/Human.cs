@@ -4,6 +4,11 @@ namespace TicTacToe
 {
 	class Human : Input
 	{
+		Output writer;
+		public Human(OutputType outputType)
+		{
+			writer = new Output(outputType);
+		}
 		public int Input()
 		{
 			int position;
@@ -13,7 +18,7 @@ namespace TicTacToe
 				{
 					return position;
 				}
-				Console.Write("Please enter a valid input. Try again: ");
+				writer.Write("Please enter a valid input. Try again: ");
 			}
 		}
 	}

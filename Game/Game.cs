@@ -7,14 +7,21 @@ namespace TicTacToe
     class Game: Toss
     {
         List<Player> players;
-        Board board; 
+        Board board;
+		Output writer;
+		
 
-        public Game(int playersCount, int boardSize)
+        public Game(int playersCount, int boardSize, OutputType outputType)
         {
-            players = new List<Player>();
+			writer = new Output(outputType);
+			if(outputType == OutputType.File)
+			{
+				FileWriter.ClearFile();
+			}
+			players = new List<Player>();
             for (int i = 0; i < playersCount; i++)
             {
-                players.Add(new Player(players));
+                players.Add(new Player(players, outputType));
             }
             board = new Board(boardSize);
             Toss();
@@ -26,7 +33,7 @@ namespace TicTacToe
             //Display player information
             foreach (var p in players)
             {
-                Console.WriteLine("\n{0}\n", p.ToString());
+                writer.WriteLine(string.Format("\n{0}\n", p.ToString()));
             }
             for (int i = 0, j = 0; i < board.Size * board.Size; i++, j = (++j) % players.Count)
             {
@@ -35,28 +42,28 @@ namespace TicTacToe
                 Player player = (from p in players
                                 where p.Order == j
                                 select p).First();
-                Console.WriteLine(board.Display());
+                writer.WriteLine(board.Display());
                 position = player.Input();
                 while (IsValid(board, position) == false)
                 {
-                    Console.WriteLine("Enter a valid position.");
+                    writer.WriteLine("Enter a valid position.");
                     position = player.Input();
                 }
                 WriteData(position, player);
-                Console.WriteLine("{0} placed {1} at the position {2}.", player.Name, player.Piece.ToString(), position);
+				writer.WriteLine(string.Format("{0} placed {1} at the position {2}.", player.Name, player.Piece.ToString(), position));
                 Console.WriteLine(board.ToString());
                 if (board.Count >= (2 * board.Size - 2))
                 {
                     var winner = IsGameOver();
                     if (winner != null)
                     {
-                        Console.WriteLine("\n{0} IS THE WINNER!!!", winner.Name.ToUpper());
+                        writer.WriteLine(string.Format("\n{0} IS THE WINNER!!!", winner.Name.ToUpper()));
                         return;
                     }
                 }
                 if (board.Count == board.Size * board.Size -1)
                 {
-                    Console.WriteLine("IT'S A DRAW. WELL PLAYED!");
+                    writer.WriteLine("IT'S A DRAW. WELL PLAYED!");
                 }
                 ++board.Count;
             }
